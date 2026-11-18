@@ -1,0 +1,26 @@
+:root{--motion-fast:120ms;--motion-enter:260ms;--motion-exit:170ms;--ease-out:cubic-bezier(.22,1,.36,1)}
+/* Surface changes answer an action; reading and typing do not trigger motion. */
+@keyframes surface-in{from{opacity:.3;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes dialog-in{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes shade-in{from{opacity:0}to{opacity:1}}
+.new-menu,.search-results{animation:surface-in 160ms var(--ease-out);transform-origin:top right}
+.modal{animation:dialog-in 240ms var(--ease-out)}
+.modal-backdrop,.drawer-scrim,.right-scrim{animation:shade-in 160ms ease-out}
+.toast{animation:surface-in 180ms var(--ease-out)}
+.button,.icon-button,.quick-actions button{transition:background var(--motion-fast) ease,color var(--motion-fast) ease,transform var(--motion-fast) var(--ease-out)}
+.button:active:not(:disabled),.quick-actions button:active{transform:scale(.98)}
+.sidebar nav button,.sidebar-bottom>button{transition:background 150ms ease,color 150ms ease}
+.sidebar nav button.active{background:#242428;color:var(--text)}
+.tabs button,.rail-tabs>button{transition:color 150ms ease,border-color 150ms ease}
+@media(min-width:1251px){.right-rail:not([inert]) .rail-content{animation:surface-in 210ms var(--ease-out)}}
+@media(max-width:1250px){
+ .right-rail{transition:transform var(--motion-exit) var(--ease-out),visibility 0s linear var(--motion-exit)}
+ .right-rail.mobile-open{transition:transform var(--motion-enter) var(--ease-out),visibility 0s}
+}
+@media(max-width:1000px){
+ .sidebar{transition:transform var(--motion-exit) var(--ease-out),visibility 0s linear var(--motion-exit)}
+ .sidebar.mobile-open{transition:transform var(--motion-enter) var(--ease-out),visibility 0s}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
